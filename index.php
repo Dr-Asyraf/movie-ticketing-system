@@ -4,7 +4,9 @@ $conn = get_db_connection();
 
 get_movies($conn);
 
-add_movies($conn);
+// add_movies($conn);
+
+update_movie($conn);
 
 get_movies($conn);
 
@@ -34,6 +36,8 @@ function get_db_connection()
 
 function get_movies($conn)
 {
+    echo "<h3> Movies List </h3>";
+
     $sql = "SELECT * FROM movie;";
 
     $stmt = $conn->prepare($sql);
@@ -85,6 +89,7 @@ function format_release_date($release_date)
 
 function add_movies($conn)
 {
+    echo "<h3> Add New Movie </h3>";
 
     $data = [
         "title"         => "Boku no hero",
@@ -101,7 +106,7 @@ function add_movies($conn)
     $release_date   = parse_release_date($data['release_date']);
 
     $sql = "INSERT into movie (title, genre, duration, rating, release_date) VALUES (?, ?, ?, ?, ?)";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssids", $title, $genre, $duration, $rating, $release_date);
     if ($stmt->execute()) {
@@ -145,4 +150,35 @@ function parse_release_date($release_date)
     }
 
     return $release_date;
+}
+
+function update_movie($conn){
+    echo "<h3>Update Movie</h3>";
+
+    $data = [
+        "id"            => 3,
+        "title"         => "Naruto",
+        "genre"         => array('ninja', 'action'),
+        "duration"      => 30,
+        "rating"        => 10,
+        "release_date"  => "2012-09-14"
+    ];
+
+    $id = (int) $data['id'];
+    $title          = parse_title($data['title']);
+    $genre          = parse_genre($data['genre']);
+    $duration       = parse_duration($data['duration']);
+    $rating         = parse_rating($data['rating']);
+    $release_date   = parse_release_date($data['release_date']);
+
+    $sql = "UPDATE movie SET title = ?, genre = ?, duration = ?, rating = ?, release_date = ? WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssidsi", $title, $genre, $duration, $rating, $release_date, $id);
+    if($stmt->execute()){
+        echo "Movie updated successfully. Movie ID: ". $id . "</br>";
+    } else {
+        echo "Error updating movie. </br>" . $stmt->error;
+    }
+
 }
