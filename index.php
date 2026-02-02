@@ -144,5 +144,3 @@ function parse_release_date($release_date)
 
     return $release_date;
 }
-
-//test
