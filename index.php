@@ -8,11 +8,6 @@ add_movies($conn);
 
 get_movies($conn);
 
-/* 1. add movie function
-2. tambah dummy data
-3. format dummy data
-4. panggil balik get movies function */
-
 function get_db_connection()
 {
     $servername = 'localhost';
@@ -40,7 +35,11 @@ function get_db_connection()
 function get_movies($conn)
 {
     $sql = "SELECT * FROM movie;";
-    $result = $conn->query($sql);
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         //output data for each row
@@ -88,24 +87,27 @@ function add_movies($conn)
 {
 
     $data = [
-        "title"     => "Boku no hero",
-        "genre"     => array('action', 'anime'),
-        "duration"  => 90,
-        "rating"    => 5.5,
+        "title"         => "Boku no hero",
+        "genre"         => array('action', 'anime'),
+        "duration"      => 90,
+        "rating"        => 5.5,
         "release_date"  => "2024-08-14"
     ];
 
-    $title = parse_title($data['title']);
-    $genre = parse_genre($data['genre']);
-    $duration = parse_duration($data['duration']);
-    $rating = parse_rating($data['rating']);
+    $title          = parse_title($data['title']);
+    $genre          = parse_genre($data['genre']);
+    $duration       = parse_duration($data['duration']);
+    $rating         = parse_rating($data['rating']);
     $release_date   = parse_release_date($data['release_date']);
 
-    $sql = "INSERT into movie (title, genre, duration, rating, release_date) VALUES ('$title', '$genre', $duration, $rating, '$release_date')";
-    if (mysqli_query($conn, $sql)){
-        echo "New Movie Added Successfully. Movie ID: " . mysqli_insert_id($conn) . "</br>";
+    $sql = "INSERT into movie (title, genre, duration, rating, release_date) VALUES (?, ?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssids", $title, $genre, $duration, $rating, $release_date);
+    if ($stmt->execute()) {
+        echo "New Movie Added Successfully. Movie ID: " . $stmt->insert_id . "</br>";
     } else {
-        echo "Error: " . $sql . "</br>" . mysqli_error($conn);
+        echo "Error: " . $stmt->error;
     }
 }
 
