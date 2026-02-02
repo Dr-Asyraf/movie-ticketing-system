@@ -2,17 +2,17 @@
 
 $conn = get_db_connection();
 
-// get_movies($conn);
+get_movies();
 
-// add_movies($conn);
+add_movies();
 
-// update_movie($conn);
+update_movie();
 
-// get_movies($conn);
+get_movies();
 
-// get_movie_by_id($conn);
+get_movie_by_id();
 
-delete_movie($conn);
+delete_movie();
 
 function get_db_connection()
 {
@@ -38,8 +38,10 @@ function get_db_connection()
 }
 
 
-function get_movies($conn)
+function get_movies()
 {
+    global $conn;
+
     echo "<h3> Movies List </h3>";
 
     $sql = "SELECT * FROM movie;";
@@ -91,8 +93,10 @@ function format_release_date($release_date)
     return date("d-M-Y", strtotime($release_date));
 }
 
-function add_movies($conn)
+function add_movies()
 {
+    global $conn;
+
     echo "<h3> Add New Movie </h3>";
 
     $data = [
@@ -156,8 +160,10 @@ function parse_release_date($release_date)
     return $release_date;
 }
 
-function update_movie($conn)
+function update_movie()
 {
+    global $conn;
+
     echo "<h3>Update Movie</h3>";
 
     $data = [
@@ -187,8 +193,10 @@ function update_movie($conn)
     }
 }
 
-function get_movie_by_id($conn)
+function get_movie_by_id()
 {
+    global $conn;
+
     echo "<h3> Get movie by id </h3>";
 
     $id = 2;
@@ -214,8 +222,10 @@ function get_movie_by_id($conn)
     }
 }
 
-function delete_movie($conn)
+function delete_movie()
 {
+    global $conn;
+
     echo "<h3> Delete Movie </h3>";
 
     $id = 5;
