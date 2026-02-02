@@ -2,13 +2,15 @@
 
 $conn = get_db_connection();
 
-get_movies($conn);
+// get_movies($conn);
 
 // add_movies($conn);
 
-update_movie($conn);
+// update_movie($conn);
 
-get_movies($conn);
+// get_movies($conn);
+
+get_movie_by_id($conn);
 
 function get_db_connection()
 {
@@ -181,4 +183,30 @@ function update_movie($conn){
         echo "Error updating movie. </br>" . $stmt->error;
     }
 
+}
+
+function get_movie_by_id($conn){
+    echo "<h3> Get movie by id </h3>";
+
+    $id = 2;
+
+    $sql = "SELECT * FROM movie WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if($result->num_rows > 0){
+        while ($row = $result->fetch_assoc()){
+            echo "-Title: " . format_title($row["title"]) . "</br>";
+            echo "-Genre: " . format_genre($row["genre"]) . "</br>";
+            echo "-Duration: " . format_duration($row["duration"]) . "</br>";
+            echo "-Rating: " . format_rating($row["rating"]) . "</br>";
+            echo "-Release Date: " . format_release_date($row["release_date"]) . "</br>";
+            echo "</br>";
+        }
+    } else {
+        echo "0 Result";
+    }
 }
