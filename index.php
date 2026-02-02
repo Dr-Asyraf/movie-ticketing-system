@@ -10,7 +10,9 @@ $conn = get_db_connection();
 
 // get_movies($conn);
 
-get_movie_by_id($conn);
+// get_movie_by_id($conn);
+
+delete_movie($conn);
 
 function get_db_connection()
 {
@@ -154,7 +156,8 @@ function parse_release_date($release_date)
     return $release_date;
 }
 
-function update_movie($conn){
+function update_movie($conn)
+{
     echo "<h3>Update Movie</h3>";
 
     $data = [
@@ -177,15 +180,15 @@ function update_movie($conn){
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssidsi", $title, $genre, $duration, $rating, $release_date, $id);
-    if($stmt->execute()){
-        echo "Movie updated successfully. Movie ID: ". $id . "</br>";
+    if ($stmt->execute()) {
+        echo "Movie updated successfully. Movie ID: " . $id . "</br>";
     } else {
         echo "Error updating movie. </br>" . $stmt->error;
     }
-
 }
 
-function get_movie_by_id($conn){
+function get_movie_by_id($conn)
+{
     echo "<h3> Get movie by id </h3>";
 
     $id = 2;
@@ -197,8 +200,8 @@ function get_movie_by_id($conn){
     $stmt->execute();
 
     $result = $stmt->get_result();
-    if($result->num_rows > 0){
-        while ($row = $result->fetch_assoc()){
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
             echo "-Title: " . format_title($row["title"]) . "</br>";
             echo "-Genre: " . format_genre($row["genre"]) . "</br>";
             echo "-Duration: " . format_duration($row["duration"]) . "</br>";
@@ -208,5 +211,21 @@ function get_movie_by_id($conn){
         }
     } else {
         echo "0 Result";
+    }
+}
+
+function delete_movie($conn)
+{
+    echo "<h3> Delete Movie </h3>";
+
+    $id = 5;
+
+    $sql = "DELETE from movie WHERE id = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        echo "Movie deleted successfully. Movie ID: " . $id;
+    } else {
+        echo "Error deleting movie. </br> Error: " . $stmt->error;
     }
 }
