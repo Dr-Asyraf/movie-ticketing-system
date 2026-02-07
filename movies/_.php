@@ -91,6 +91,32 @@ function add_movie(string $title, array $genre, int $duration, float $rating, st
     
 }
 
+function update_movie_by_id($id, $title, $genre, $duration, $rating, $release_date) : ?int
+{
+    global $conn;
+
+    $id = (int) $id;
+    $title          = parse_title($title);
+    $genre          = parse_genre($genre);
+    $duration       = parse_duration($duration);
+    $rating         = parse_rating($rating);
+    $release_date   = parse_release_date($release_date);
+
+    $sql = "UPDATE movie SET title = ?, genre = ?, duration = ?, rating = ?, release_date = ? WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssidsi", $title, $genre, $duration, $rating, $release_date, $id);
+
+    $movie_id = null;
+    if ($stmt->execute()) {
+        $movie_id = $id;
+    }
+
+    $stmt->close();
+
+    return $movie_id;
+}
+
 // Helper functions
 function format_title($title)
 {
