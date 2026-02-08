@@ -34,7 +34,7 @@ function get_movies()
     return $movies;
 }
 
-function get_movie_by_id($id) : ?stdClass
+function get_movie_by_id($id): ?stdClass
 {
     global $conn;
 
@@ -51,13 +51,12 @@ function get_movie_by_id($id) : ?stdClass
     $movie = null;
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-            $movie = new stdClass;
-            $movie->title = format_title($row["title"]);
-            $movie->genre = format_genre($row["genre"]);
-            $movie->duration = format_duration($row["duration"]);
-            $movie->rating = format_rating($row["rating"]);
-            $movie->release_date = format_release_date($row["release_date"]);
-            
+        $movie = new stdClass;
+        $movie->title = format_title($row["title"]);
+        $movie->genre = format_genre($row["genre"]);
+        $movie->duration = format_duration($row["duration"]);
+        $movie->rating = format_rating($row["rating"]);
+        $movie->release_date = format_release_date($row["release_date"]);
     }
     return $movie;
 }
@@ -77,21 +76,18 @@ function add_movie(string $title, array $genre, int $duration, float $rating, st
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssids", $title, $genre, $duration, $rating, $release_date);
-    
+
     $movie_id = null;
-    if($stmt->execute()){
+    if ($stmt->execute()) {
         $movie_id = $stmt->insert_id;
     }
 
     $stmt->close();
 
     return $movie_id;
-    
-    
-    
 }
 
-function update_movie_by_id($id, $title, $genre, $duration, $rating, $release_date) : ?int
+function update_movie_by_id($id, $title, $genre, $duration, $rating, $release_date): ?int
 {
     global $conn;
 
@@ -115,6 +111,25 @@ function update_movie_by_id($id, $title, $genre, $duration, $rating, $release_da
     $stmt->close();
 
     return $movie_id;
+}
+
+function delete_movie_by_id($id): bool
+{
+    global $conn;
+
+    $sql = "DELETE from movie WHERE id = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    $stmt->close();
+
+    return $result;
 }
 
 // Helper functions
