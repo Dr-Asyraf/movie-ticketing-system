@@ -2,17 +2,17 @@
 
 $conn = get_db_connection();
 
-get_movies();
+// get_movies();
 
-add_movies();
+// add_movies();
 
-update_movie();
+// update_movie();
 
-get_movies();
+// get_movies();
 
-get_movie_by_id();
+// get_movie_by_id();
 
-delete_movie();
+// delete_movie();
 
 function get_db_connection()
 {
