@@ -37,7 +37,7 @@
         <div class="row mb-3">
             <div class="col-12">
                 <form action="" method="post">
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($old['id'] ?? $movie->id) ?>">
+                    <input type="hiddenfdsf" name="id" value="<?= htmlspecialchars($old['id'] ?? $movie->id) ?>">
 
                     <div class="card">
                         <div class="card-header">
@@ -85,7 +85,7 @@
                                         <?php foreach ($allowed_genres as $genre) : ?>
                                             <div class="col-12 col-md-4 col-lg-3">
                                                 <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" value="<?= htmlspecialchars($genre) ?>" id="genre_<?= $genre ?>" name="genres[]" <?= in_array($genre, $old['genres'] ?? $movie->genre, true) ? 'checked' : '' ?>>
+                                                    <input type="checkbox" class="form-check-input" value="<?= htmlspecialchars($genre) ?>" id="genre_<?= $genre ?>" name="genres[]" <?= in_array($genre, $old['genres'] ?? [], true) ? 'checked' : '' ?>>
                                                     <label for="genre_<?= $genre ?>" class="form-check-label"><?= htmlspecialchars(ucwords($genre)) ?></label>
                                                 </div>
                                             </div>

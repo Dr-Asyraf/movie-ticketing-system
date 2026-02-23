@@ -52,6 +52,7 @@ function get_movie_by_id($id): ?stdClass
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $movie = new stdClass;
+        $movie->id = (int) $row["id"];
         $movie->title = format_title($row["title"]);
         $movie->genre = format_genre($row["genre"]);
         $movie->duration = format_duration($row["duration"]);
