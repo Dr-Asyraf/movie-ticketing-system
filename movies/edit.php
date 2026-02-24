@@ -37,7 +37,7 @@
         <div class="row mb-3">
             <div class="col-12">
                 <form action="" method="post">
-                    <input type="hiddenfdsf" name="id" value="<?= htmlspecialchars($old['id'] ?? $movie->id) ?>">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($old['id'] ?? $movie->id) ?>">
 
                     <div class="card">
                         <div class="card-header">

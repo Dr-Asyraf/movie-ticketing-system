@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_movie'])) {
     $old = $_POST;
     $old['genres'] = $_POST['genres'] ?? [];
 
-    $id = (int) ($_POST['id'] ?? 0); //why not old?
+    $id = (int) ($_POST['id'] ?? 0);
 
     if ($id <= 0 || !get_movie_by_id($id)) {
         header('Location: index.php?error=movie_not_found');
