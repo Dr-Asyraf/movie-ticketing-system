@@ -40,7 +40,7 @@ function format_duration_string($duration) : string
 {
     $hours = floor($duration / 60);
     $minutes = $duration % 60;
-    return "{$hours}h" . " {$minutes}m";
+    return "{$hours}h {$minutes}m";
 }
 
 
@@ -51,6 +51,11 @@ function format_rating($rating) : float
 
 function format_rating_string($rating)
 {
+    if ($rating === null)
+        return "N/A";
+
+    $rating = (float) $rating;
+
     return "{$rating}/10";
 }
 

@@ -20,10 +20,10 @@ function get_movies()
             $movie = new stdClass;
             $movie->id              = (int) $row['id'];
             $movie->title           = format_title($row['title']);
-            $movie->duration        = format_duration($row['duration']);
-            $movie->rating          = format_rating($row['rating']);
-            $movie->release_date    = format_release_date($row['release_date']);
-            $movie->genre           = format_genre($row['genre']);
+            $movie->duration        = format_duration_string($row['duration']);
+            $movie->rating          = format_rating_string($row['rating']);
+            $movie->release_date    = format_release_date_string($row['release_date']);
+            $movie->genre           = format_genre_string($row['genre']);
 
             $movies[] = $movie;
         }
