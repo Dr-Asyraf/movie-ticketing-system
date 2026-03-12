@@ -32,7 +32,7 @@ CREATE TABLE `merchandise` (
 `description` TEXT,
 `price` DECIMAL(10,2) NOT NULL,
 `stock_qty` INT DEFAULT 0,
-`image_url` VARCHAR(500),
+`image_url` LONGTEXT,
 `is_active` TINYINT(1) DEFAULT 1,
 `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
