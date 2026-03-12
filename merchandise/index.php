@@ -25,13 +25,14 @@
     .container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        background-color: dodgerblue;
+        background-color: #F3F4F6;
         padding: 10px;
         gap: 10px;
+        margin: 0px 10px;
     }
 
     .container div {
-        background-color: #f1f1f1;
+        background-color: #FFFFFF;
         /* border: 1px solid black; */
         padding: 10px;
         font-size: 30px;
@@ -88,35 +89,71 @@
         background: #1de9b6;
         line-height: 1.15;
         font-size: 16px;
-        /* font-family: monospace; */
         text-decoration: none;
+    }
 
-        :hover {
-            transition: all .1s ease;
-            box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
-        }
+    .button-view {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #000a47;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .button-edit {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #c2d60e;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .button-delete {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #ff5000;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
     }
 
     .badge {
         color: white;
-        background-color: red;
+        background-color: #ff0000;
         padding: 4px 10px;
         border-radius: 12px;
         text-align: center;
-
     }
 </style>
 
+<!-- BODY -->
+
 <body>
     <!-- Body Header -->
-    <div>
-        <h2>Merchandise</h2>
-    </div>
 
-    <div>
-        <a href="" class="button-add">Add New Merchandise</a>
-    </div>
+    <h2 style="margin: 10px; font-family: Segoe UI;">Merchandise</h2>
 
+    <a href="/merchandise/create.php" class="button-add" style="margin: 5px 0px 0px 10px;">Add New Merchandise</a>
 
     <!-- Body Content-->
     <div class="container">
@@ -146,9 +183,9 @@
                     <?php endif; ?>
 
                     <div>
-                        <a href="" class="button-add">View</a>
-                        <a href="" class="button-add">Edit</a>
-                        <a href="" class="button-add">Delete</a>
+                        <a href="<?php echo '/merchandise/show.php?id=' . urlencode($movie->id); ?>" class="button-view">View</a>
+                        <a href="<?php echo '/merchandise/edit.php?id=' . urlencode($movie->id); ?>" class="button-edit">Edit</a>
+                        <a href="<?php echo '/movies/delete.php?id=' . urlencode($movie->id); ?>" class="button-delete">Delete</a>
                     </div>
 
                 </div>
