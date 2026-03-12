@@ -183,9 +183,9 @@
                     <?php endif; ?>
 
                     <div>
-                        <a href="<?php echo '/merchandise/show.php?id=' . urlencode($movie->id); ?>" class="button-view">View</a>
-                        <a href="<?php echo '/merchandise/edit.php?id=' . urlencode($movie->id); ?>" class="button-edit">Edit</a>
-                        <a href="<?php echo '/movies/delete.php?id=' . urlencode($movie->id); ?>" class="button-delete">Delete</a>
+                        <a href="<?php echo '/merchandise/show.php?id=' . urlencode($merchandise->id); ?>" class="button-view">View</a>
+                        <a href="<?php echo '/merchandise/edit.php?id=' . urlencode($merchandise->id); ?>" class="button-edit">Edit</a>
+                        <a href="<?php echo '/merchandise/delete.php?id=' . urlencode($merchandise->id); ?>" class="button-delete">Delete</a>
                     </div>
 
                 </div>
