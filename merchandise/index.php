@@ -185,7 +185,10 @@
                     <div>
                         <a href="<?php echo '/merchandise/show.php?id=' . urlencode($merchandise->id); ?>" class="button-view">View</a>
                         <a href="<?php echo '/merchandise/edit.php?id=' . urlencode($merchandise->id); ?>" class="button-edit">Edit</a>
-                        <a href="<?php echo '/merchandise/delete.php?id=' . urlencode($merchandise->id); ?>" class="button-delete">Delete</a>
+                        <form action="/merchandise/delete.php" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this merchandise?');">
+                            <input type="hidden" name="id" value="<?= $merchandise->id ?>">
+                            <button type="submit" name="delete_merchandise" value="1" class="button-delete">Delete</button>
+                        </form>
                     </div>
 
                 </div>

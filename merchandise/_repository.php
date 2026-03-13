@@ -112,3 +112,22 @@ function update_merchandise_by_id($id, $name, $description, $price, $stock_qty, 
 
     return $merchandise_id;
 }
+
+function delete_merchandise_by_id($id): bool
+{
+    global $conn;
+
+    $sql = "DELETE from merchandise WHERE id = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    $stmt->close();
+
+    return $result;
+}
