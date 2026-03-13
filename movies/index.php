@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous">
 
     <title>Movies</title>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         <?php endif ?>
-        
+
         <div class="row mb-3">
             <div class="col-12">
                 <h3>Movies</h3>
@@ -67,21 +67,21 @@
                                             <td><?php echo htmlspecialchars($movie->rating); ?></td>
                                             <td><?php echo htmlspecialchars($movie->duration); ?></td>
                                             <td>
-                                                <a 
-                                                    href="<?php echo '/movies/show.php?id=' . urlencode($movie->id); ?>" 
+                                                <a
+                                                    href="<?php echo '/movies/show.php?id=' . urlencode($movie->id); ?>"
                                                     class="btn btn-sm btn-info">
                                                     View
                                                 </a>
-                                                <a 
-                                                    href="<?php echo '/movies/edit.php?id=' . urlencode($movie->id); ?>" 
+                                                <a
+                                                    href="<?php echo '/movies/edit.php?id=' . urlencode($movie->id); ?>"
                                                     class="btn btn-sm btn-warning">
                                                     Edit
                                                 </a>
-                                                <a 
-                                                    href="<?php echo '/movies/delete.php?id=' . urlencode($movie->id); ?>" 
-                                                    class="btn btn-sm btn-danger">
-                                                    Delete
-                                                </a>
+                                                <form action="/movies/delete.php" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this movie?');">
+                                                    <input type="hidden" name="id" value="<?= $movie->id ?>">
+                                                    <button type="submit" name="delete_movie" value="1" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                                
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -94,9 +94,9 @@
         </div>
     </div>
 
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous">
     </script>
 </body>
