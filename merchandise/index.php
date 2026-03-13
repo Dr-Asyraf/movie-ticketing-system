@@ -9,6 +9,143 @@
     <title>Merchandise</title>
 </head>
 
+<!-- CSS -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        font-family: sans-serif;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background-color: #F3F4F6;
+        padding: 10px;
+        gap: 10px;
+        margin: 0px 10px;
+    }
+
+    .container div {
+        background-color: #FFFFFF;
+        /* border: 1px solid black; */
+        padding: 10px;
+        font-size: 30px;
+        text-align: center;
+        margin: 3px;
+        border-radius: 12px;
+    }
+
+    .container div.header {
+        grid-area: header;
+        text-align: center;
+    }
+
+    .container div.content {
+        grid-area: content;
+    }
+
+    .content h5 {
+        margin: 0;
+    }
+
+    .container div.footer {
+        grid-area: footer;
+        text-align: center;
+    }
+
+    .merchandise-image {
+        max-width: 200px;
+        margin: auto;
+    }
+
+    .disabled-grid {
+        pointer-events: none;
+        /* Prevents all click, hover, and other pointer events */
+        opacity: 0.5;
+        /* Visually "greys out" the container to indicate it's disabled */
+        cursor: not-allowed;
+        /* Changes the cursor to indicate the non-interactive state */
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .button-add {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #000021;
+        background: #1de9b6;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .button-view {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #000a47;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .button-edit {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #c2d60e;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .button-delete {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 12px 24px;
+        border: 0;
+        color: #fff;
+        background: #ff5000;
+        line-height: 1.15;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .badge {
+        color: white;
+        background-color: #ff0000;
+        padding: 4px 10px;
+        border-radius: 12px;
+        text-align: center;
+    }
+</style>
+
 <!-- BODY -->
 
 <body>
