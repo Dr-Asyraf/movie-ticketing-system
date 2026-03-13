@@ -16,7 +16,7 @@ $description = sanitize_description($old['description'] ??'', $errors);
 $price = sanitize_price($old['price'] ??'', $errors);
 $stock_qty = sanitize_stock_qty($old['stock_qty'] ??'', $errors);
 $image_url = sanitize_image_url($old['image_url'] ??'', $errors);
-$is_active = sanitize_is_active($old['is_active'] ??'', $errors);
+// $is_active = sanitize_is_active($old['is_active'] ??'', $errors);
 
 if (!empty($errors)) {
     return;
@@ -28,7 +28,7 @@ $merchandiseId = add_merchandise(
     $price,
     $stock_qty,
     $image_url,
-    $is_active
+    // $is_active
 );
 
 if (!$merchandiseId) {

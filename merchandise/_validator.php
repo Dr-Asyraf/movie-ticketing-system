@@ -83,7 +83,7 @@ function sanitize_is_active($is_active, array &$errors): ?int
     $is_active = filter_var($is_active, FILTER_VALIDATE_INT, $options);
 
     if ($is_active === false) {
-        $errors['stock_qty'] = 'Stock quantity must be either 0 or 1';
+        $errors['is_active'] = 'This field must be either 0 or 1';
         return null;
     }
 
