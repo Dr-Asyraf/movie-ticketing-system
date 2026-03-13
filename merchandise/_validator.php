@@ -54,6 +54,23 @@ function sanitize_stock_qty($stock_qty, array &$errors): ?int
     return $stock_qty;
 }
 
+function sanitize_stock_qty_edit($stock_qty, array &$errors): ?int
+{
+    if ($stock_qty === '') {
+        $errors['stock_qty'] = 'Stock quantity is required';
+        return null;
+    }
+
+    $stock_qty = filter_var($stock_qty, FILTER_VALIDATE_INT);
+
+    if ($stock_qty === false) {
+        $errors['stock_qty'] = 'Stock quantity must not be false';
+        return null;
+    }
+
+    return $stock_qty;
+}
+
 function sanitize_image_url($image_url, array &$errors): ?string
 {
     $image_url = trim($image_url);

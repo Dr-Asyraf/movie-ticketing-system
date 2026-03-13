@@ -86,3 +86,29 @@ function add_merchandise(string $name, string $description, float $price, int $s
     return $merchandise_id;
 
 }
+
+function update_merchandise_by_id($id, $name, $description, $price, $stock_qty, $image_url): ?int
+{
+    global $conn;
+
+    $id = (int) $id;
+    $name        = parse_name($name);
+    $description = parse_description($description);
+    $price       = parse_price($price);
+    $stock_qty   = parse_stock_qty($stock_qty);
+    $image_url   = parse_image_url($image_url);
+
+    $sql = "UPDATE merchandise SET name = ?, description = ?, price = ?, stock_qty = ?, image_url = ? WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssdisi", $name, $description, $price, $stock_qty, $image_url, $id);
+
+    $merchandise_id = null;
+    if ($stmt->execute()) {
+        $merchandise_id = $id;
+    }
+
+    $stmt->close();
+
+    return $merchandise_id;
+}
