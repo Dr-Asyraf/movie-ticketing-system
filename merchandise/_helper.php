@@ -11,6 +11,11 @@ function format_description($description): string
     return ucfirst(strtolower($description));
 }
 
+function format_price($price)
+{
+    return (float) $price;
+}
+
 function format_price_string($price): string
 {
     if ($price === null){
@@ -20,6 +25,11 @@ function format_price_string($price): string
     $price = (float) $price;
 
     return "RM {$price}";
+}
+
+function format_stock_qty($stock_qty)
+{
+    return (int) $stock_qty;
 }
 
 function format_stock_qty_string($stock_qty): string
@@ -32,7 +42,12 @@ function format_stock_qty_string($stock_qty): string
     return "{$stock_qty}";
 }
 
-function format_image_url($image_url): string
+function format_image_url($image_url)
+{
+    return trim($image_url);
+}
+
+function format_image_url_string($image_url): string
 {
     return "{$image_url}";
 }

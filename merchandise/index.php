@@ -19,7 +19,7 @@
 
     html,
     body {
-        font-family: monospace;
+        font-family: sans-serif;
     }
 
     .container {
