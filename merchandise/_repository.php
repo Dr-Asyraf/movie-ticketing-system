@@ -32,3 +32,29 @@ function get_merchandise(): array
     return $merchandises;
 }
 
+function add_merchandise(string $name, string $description, float $price, int $stock_qty, string $image_url, int $is_active) : ?int
+{
+    global $conn;
+
+    $name = parse_name($name);
+    $description = parse_description($description);
+    $price = parse_price($price);
+    $stock_qty = parse_stock_qty($stock_qty);
+    $image_url = parse_image_url($image_url);
+    $is_active = parse_is_active($is_active);
+
+    $sql = "INSERT into merchandise (name, description, price, stock_qty, image_url, is_active) VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssdisi", $name, $description, $price, $stock_qty, $image_url, $is_active);
+
+    $merchandise_id = null;
+    if ($stmt->execute()) {
+        $merchandise_id = $stmt->insert_id;
+    }
+
+    $stmt->close();
+
+    return $merchandise_id;
+
+}
