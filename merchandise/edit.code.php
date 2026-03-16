@@ -28,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_merchandise'])
 
     $id = (int) ($_POST['id'] ?? 0);
 
-    if ($id <= 0 || !get_merchandise_by_id($id)) {
+    $merchandise = get_merchandise_by_id($id);
+
+    if ($id <= 0 || !$merchandise) {
         header('Location: index.php?error=merchandise_not_found');
         exit;
     }

@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
             <h2>Edit merchandise</h2>
-            <p>Fill in the details below to edit the <?= htmlspecialchars($merchandise->name) ?> merchandise.</p>
+            <p>Fill in the details below to edit the <?= $merchandise->name ?> merchandise.</p>
         </div>
 
         <form action="" method="POST">

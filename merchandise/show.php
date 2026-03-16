@@ -81,7 +81,8 @@
 
         <div class="card-footer">
             <a href="<?= '/merchandise/index.php'; ?>" class="button-back">Back</a>
-            <a href="<?= '/merchandise/edit.php'; ?>" class="button-edit">Edit</a>
+            <!-- <a href="<?= '/merchandise/edit.php'; ?>" class="button-edit">Edit</a> -->
+             <a href="<?php echo '/merchandise/edit.php?id=' . urlencode($merchandise->id); ?>" class="button-edit">Edit</a>
         </div>
 
 
